@@ -67,7 +67,7 @@ function init() {
 }
 
 function bindEvents() {
-  refs.findBtn.addEventListener("click", onFind);
+  refs.findBtn.addEventListener("click", () => onFind());
   refs.codeInput.addEventListener("keydown", (event) => {
     if (event.key === "Enter") onFind();
   });
@@ -94,7 +94,8 @@ function bindEvents() {
 }
 
 function onFind(codeFromScan) {
-  const raw = codeFromScan || refs.codeInput.value.trim();
+  const isDomEvent = typeof Event !== "undefined" && codeFromScan instanceof Event;
+  const raw = (!isDomEvent && codeFromScan != null) ? codeFromScan : refs.codeInput.value.trim();
   const code = extractCode(raw);
 
   if (!Number.isInteger(code) || code < 1 || code > 16) {
