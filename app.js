@@ -59,6 +59,7 @@ const refs = {
   importJson: document.getElementById("import-json"),
   importBtn: document.getElementById("import-btn"),
   exportBtn: document.getElementById("export-btn"),
+  body: document.body,
 };
 
 init();
@@ -103,7 +104,7 @@ function onFind(codeFromScan) {
   const code = Number.parseInt(raw, 10);
 
   if (!Number.isInteger(code) || code < 1 || code > 16) {
-    setStatus("Ingresá un código válido entre 1 y 16.");
+    setStatus("Ese código no sirve 😅. Probá con un número entre 1 y 16.");
     return;
   }
 
@@ -113,7 +114,9 @@ function onFind(codeFromScan) {
     return;
   }
 
-  if (!state.found.includes(code)) {
+  const isNewEgg = !state.found.includes(code);
+
+  if (isNewEgg) {
     state.found.push(code);
     state.found.sort((a, b) => a - b);
     persistFound();
@@ -121,9 +124,46 @@ function onFind(codeFromScan) {
 
   renderResult(egg);
   showCluePopup(egg);
+  launchEggParty(code);
   renderAll();
-  setStatus(`¡Excelente! Descubriste el huevo #${code}.`);
+  if (isNewEgg) {
+    setStatus(`✅ Código ${code} correcto: ${egg.message}`);
+  } else {
+    setStatus(`🔁 Ya habías descubierto el huevo #${code}. Igual, ¡bien ahí!`);
+  }
   refs.codeInput.value = "";
+}
+
+function launchEggParty(code) {
+  refs.body.classList.add("egg-party-mode");
+
+  const layer = document.createElement("div");
+  layer.className = "egg-party-layer";
+  layer.setAttribute("aria-hidden", "true");
+
+  const eggIcons = ["🥚", "🐣", "🐰", "🌸", "✨"];
+  const totalEggs = 42;
+
+  for (let i = 0; i < totalEggs; i += 1) {
+    const egg = document.createElement("span");
+    egg.className = "party-egg";
+    egg.textContent = eggIcons[i % eggIcons.length];
+    egg.style.left = `${Math.random() * 100}%`;
+    egg.style.animationDelay = `${Math.random() * 0.6}s`;
+    egg.style.animationDuration = `${1.8 + Math.random() * 1.3}s`;
+    layer.appendChild(egg);
+  }
+
+  const banner = document.createElement("p");
+  banner.className = "party-banner";
+  banner.textContent = `¡Código ${code} desbloqueado!`;
+  layer.appendChild(banner);
+
+  refs.body.appendChild(layer);
+
+  window.setTimeout(() => {
+    layer.remove();
+  }, 2600);
 }
 
 function showCluePopup(egg) {
