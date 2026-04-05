@@ -1,5 +1,5 @@
 :root {
-  --bg: #fff6fb;
+  --bg: #fff9ef;
   --card: #ffffff;
   --accent: #ff70a6;
   --accent-dark: #d94e83;
@@ -14,7 +14,32 @@ body {
   margin: 0;
   font-family: "Nunito", "Segoe UI", system-ui, -apple-system, sans-serif;
   color: var(--ink);
-  background: radial-gradient(circle at top, #ffe3f1 0, var(--bg) 45%);
+  background:
+    radial-gradient(circle at 15% 15%, rgba(255, 194, 223, 0.85) 0 110px, transparent 120px),
+    radial-gradient(circle at 85% 12%, rgba(195, 227, 255, 0.75) 0 95px, transparent 110px),
+    radial-gradient(circle at 80% 80%, rgba(201, 244, 220, 0.75) 0 120px, transparent 130px),
+    linear-gradient(180deg, #fff0c9 0%, #ffe9f4 45%, var(--bg) 100%);
+  background-attachment: fixed;
+}
+
+body::before {
+  content: "🥚 🌸 🐣 🌷";
+  position: fixed;
+  inset: 0 auto auto 0;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 1.4rem;
+  font-size: clamp(1rem, 2.6vw, 1.35rem);
+  opacity: 0.26;
+  pointer-events: none;
+  z-index: 0;
+}
+
+header.hero,
+main,
+footer {
+  position: relative;
+  z-index: 1;
 }
 
 header.hero {
