@@ -4,22 +4,22 @@ const STORAGE_KEYS = {
 };
 
 const DEFAULT_EGGS = [
-  { code: 1, clue: "Buscá donde guardamos los vasos para la merienda.", location: "Cocina", scripture: "Juan 11:25", message: "Jesús dijo: yo soy la resurrección y la vida.", artEmoji: "🌸" },
-  { code: 2, clue: "Revisá cerca de los almohadones del sillón grande.", location: "Living", scripture: "1 Pedro 1:3", message: "Tenemos una esperanza viva en Jesús.", artEmoji: "🐇" },
-  { code: 3, clue: "Mirá donde dejamos los zapatos al entrar.", location: "Entrada", scripture: "Mateo 28:6", message: "¡No está aquí, ha resucitado!", artEmoji: "🥚" },
-  { code: 4, clue: "Andá al lugar donde se lava la ropa.", location: "Lavadero", scripture: "Romanos 6:9", message: "Cristo vive para siempre.", artEmoji: "🕊️" },
-  { code: 5, clue: "Buscá una maceta especial en el patio.", location: "Patio", scripture: "Salmo 118:24", message: "Este es el día que hizo el Señor.", artEmoji: "🌼" },
-  { code: 6, clue: "Mirá cerca del lugar de los juguetes.", location: "Dormitorio niños", scripture: "Marcos 16:6", message: "No tengan miedo; Jesús resucitó.", artEmoji: "🧸" },
-  { code: 7, clue: "Revisá donde se guardan las toallas.", location: "Baño", scripture: "Juan 3:16", message: "Dios amó tanto al mundo que dio a su Hijo.", artEmoji: "💛" },
-  { code: 8, clue: "Fijate en el lugar donde se hacen asados.", location: "Parrillero", scripture: "Filipenses 4:4", message: "Alégrense siempre en el Señor.", artEmoji: "🔥" },
-  { code: 9, clue: "Buscá cerca de una planta alta o árbol.", location: "Jardín", scripture: "Romanos 8:11", message: "El mismo poder que levantó a Jesús nos da vida.", artEmoji: "🌳" },
-  { code: 10, clue: "Mirá en la biblioteca o estante de libros.", location: "Estudio", scripture: "Salmo 119:105", message: "Tu palabra es lámpara para mis pasos.", artEmoji: "📚" },
-  { code: 11, clue: "Buscá donde se guardan los cubiertos.", location: "Cocina", scripture: "2 Corintios 5:17", message: "En Cristo somos nueva creación.", artEmoji: "🍽️" },
-  { code: 12, clue: "Andá a la cama principal y mirá en una esquina.", location: "Dormitorio principal", scripture: "Efesios 2:8", message: "Por gracia somos salvos.", artEmoji: "🛏️" },
-  { code: 13, clue: "Buscá cerca de la heladera.", location: "Cocina", scripture: "Juan 14:19", message: "Porque yo vivo, ustedes también vivirán.", artEmoji: "❄️" },
-  { code: 14, clue: "Mirá debajo de una mesa del comedor.", location: "Comedor", scripture: "Colosenses 3:1", message: "Pongan la mira en las cosas de arriba.", artEmoji: "🍽️" },
-  { code: 15, clue: "Fijate en una ventana con cortina clara.", location: "Living", scripture: "Salmo 150:6", message: "Todo lo que respira alabe al Señor.", artEmoji: "🪟" },
-  { code: 16, clue: "Último: buscá un rincón secreto cerca de mamá/papá.", location: "Sorpresa final", scripture: "1 Corintios 15:57", message: "Gracias a Dios que nos da la victoria.", artEmoji: "👑" },
+  { code: 1, clue: "Buscá donde guardamos los vasos para la merienda.", location: "Cocina", scripture: "Juan 11:25", message: "Jesús dijo: yo soy la resurrección y la vida.", artEmoji: "🌸", artUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Noel-coypel-the-resurrection-of-christ-1700.jpg" },
+  { code: 2, clue: "Revisá cerca de los almohadones del sillón grande.", location: "Living", scripture: "1 Pedro 1:3", message: "Tenemos una esperanza viva en Jesús.", artEmoji: "🐇", artUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Clevelandart_1926.247.jpg" },
+  { code: 3, clue: "Mirá donde dejamos los zapatos al entrar.", location: "Entrada", scripture: "Mateo 28:6", message: "¡No está aquí, ha resucitado!", artEmoji: "🥚", artUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Carravagio%20-%20The%20Supper%20at%20Emmaus%20-%201601.jpg" },
+  { code: 4, clue: "Andá al lugar donde se lava la ropa.", location: "Lavadero", scripture: "Romanos 6:9", message: "Cristo vive para siempre.", artEmoji: "🕊️", artUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Titian%20-%20Noli%20me%20tangere%20-%20WGA22880.jpg" },
+  { code: 5, clue: "Buscá una maceta especial en el patio.", location: "Patio", scripture: "Salmo 118:24", message: "Este es el día que hizo el Señor.", artEmoji: "🌼", artUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Pieter%20Bruegel%20the%20Elder%20-%20The%20Procession%20to%20Calvary.jpg" },
+  { code: 6, clue: "Mirá cerca del lugar de los juguetes.", location: "Dormitorio niños", scripture: "Marcos 16:6", message: "No tengan miedo; Jesús resucitó.", artEmoji: "🧸", artUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Veronese%20-%20The%20Resurrection%20of%20Jesus%20Christ.jpg" },
+  { code: 7, clue: "Revisá donde se guardan las toallas.", location: "Baño", scripture: "Juan 3:16", message: "Dios amó tanto al mundo que dio a su Hijo.", artEmoji: "💛", artUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Raphael%20-%20The%20Transfiguration%20-%20Google%20Art%20Project.jpg" },
+  { code: 8, clue: "Fijate en el lugar donde se hacen asados.", location: "Parrillero", scripture: "Filipenses 4:4", message: "Alégrense siempre en el Señor.", artEmoji: "🔥", artUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/El_Greco_-_The_Resurrection.jpg" },
+  { code: 9, clue: "Buscá cerca de una planta alta o árbol.", location: "Jardín", scripture: "Romanos 8:11", message: "El mismo poder que levantó a Jesús nos da vida.", artEmoji: "🌳", artUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Piero_della_Francesca_046.jpg" },
+  { code: 10, clue: "Mirá en la biblioteca o estante de libros.", location: "Estudio", scripture: "Salmo 119:105", message: "Tu palabra es lámpara para mis pasos.", artEmoji: "📚", artUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio_%28Michelangelo_Merisi%29_-_The_Incredulity_of_Saint_Thomas_-_Google_Art_Project.jpg" },
+  { code: 11, clue: "Buscá donde se guardan los cubiertos.", location: "Cocina", scripture: "2 Corintios 5:17", message: "En Cristo somos nueva creación.", artEmoji: "🍽️", artUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt_Harmensz._van_Rijn_132.jpg" },
+  { code: 12, clue: "Andá a la cama principal y mirá en una esquina.", location: "Dormitorio principal", scripture: "Efesios 2:8", message: "Por gracia somos salvos.", artEmoji: "🛏️", artUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/The_Supper_at_Emmaus-Caravaggio_%281601%29.jpg" },
+  { code: 13, clue: "Buscá cerca de la heladera.", location: "Cocina", scripture: "Juan 14:19", message: "Porque yo vivo, ustedes también vivirán.", artEmoji: "❄️", artUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Matthias_Gr%C3%BCnewald_-_The_Resurrection_-_WGA10728.jpg" },
+  { code: 14, clue: "Mirá debajo de una mesa del comedor.", location: "Comedor", scripture: "Colosenses 3:1", message: "Pongan la mira en las cosas de arriba.", artEmoji: "🍽️", artUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Giotto%20di%20Bondone%20-%20No.%2039%20Scenes%20from%20the%20Life%20of%20Christ%20-%2010.%20Noli%20me%20Tangere%20-%20WGA09257.jpg" },
+  { code: 15, clue: "Fijate en una ventana con cortina clara.", location: "Living", scripture: "Salmo 150:6", message: "Todo lo que respira alabe al Señor.", artEmoji: "🪟", artUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Fra_Angelico_041.jpg" },
+  { code: 16, clue: "Último: buscá un rincón secreto cerca de mamá/papá.", location: "Sorpresa final", scripture: "1 Corintios 15:57", message: "Gracias a Dios que nos da la victoria.", artEmoji: "👑", artUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Rubens%20-%20Resurrection.jpg" },
 ];
 
 const state = {
@@ -34,6 +34,11 @@ const refs = {
   findBtn: document.getElementById("find-btn"),
   scanBtn: document.getElementById("scan-btn"),
   stopScan: document.getElementById("stop-scan"),
+  clueDialog: document.getElementById("clue-dialog"),
+  clueCode: document.getElementById("clue-code"),
+  clueMessage: document.getElementById("clue-message"),
+  clueArt: document.getElementById("clue-art"),
+  closeClue: document.getElementById("close-clue"),
   scannerDialog: document.getElementById("scanner-dialog"),
   scannerVideo: document.getElementById("scanner-video"),
   status: document.getElementById("status"),
@@ -85,6 +90,12 @@ function bindEvents() {
   refs.exportBtn.addEventListener("click", exportConfig);
   refs.scanBtn.addEventListener("click", startScan);
   refs.stopScan.addEventListener("click", stopScan);
+  refs.closeClue.addEventListener("click", closeCluePopup);
+  refs.clueDialog.addEventListener("click", (event) => {
+    const bounds = refs.clueDialog.getBoundingClientRect();
+    const outsideClick = event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom;
+    if (outsideClick) closeCluePopup();
+  });
 }
 
 function onFind(codeFromScan) {
@@ -109,9 +120,33 @@ function onFind(codeFromScan) {
   }
 
   renderResult(egg);
+  showCluePopup(egg);
   renderAll();
   setStatus(`¡Excelente! Descubriste el huevo #${code}.`);
   refs.codeInput.value = "";
+}
+
+function showCluePopup(egg) {
+  refs.clueCode.textContent = String(egg.code);
+  refs.clueMessage.textContent = `Pista siguiente: ${egg.clue}`;
+  refs.clueArt.innerHTML = "";
+
+  if (egg.artUrl) {
+    const img = document.createElement("img");
+    img.src = egg.artUrl;
+    img.alt = `Obra de arte del huevo ${egg.code}`;
+    refs.clueArt.appendChild(img);
+  } else {
+    refs.clueArt.textContent = egg.artEmoji || "🥚";
+  }
+
+  if (typeof refs.clueDialog.showModal === "function") {
+    refs.clueDialog.showModal();
+  }
+}
+
+function closeCluePopup() {
+  if (refs.clueDialog.open) refs.clueDialog.close();
 }
 
 function renderResult(egg) {
