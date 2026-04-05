@@ -25,22 +25,16 @@ const DEFAULT_EGGS = [
 const state = {
   config: loadConfig(),
   found: loadFound(),
-  stream: null,
-  scanInterval: null,
 };
 
 const refs = {
   codeInput: document.getElementById("code-input"),
   findBtn: document.getElementById("find-btn"),
-  scanBtn: document.getElementById("scan-btn"),
-  stopScan: document.getElementById("stop-scan"),
   clueDialog: document.getElementById("clue-dialog"),
   clueCode: document.getElementById("clue-code"),
   clueMessage: document.getElementById("clue-message"),
   clueArt: document.getElementById("clue-art"),
   closeClue: document.getElementById("close-clue"),
-  scannerDialog: document.getElementById("scanner-dialog"),
-  scannerVideo: document.getElementById("scanner-video"),
   status: document.getElementById("status"),
   resultCard: document.getElementById("result-card"),
   resultCode: document.getElementById("result-code"),
@@ -61,6 +55,8 @@ const refs = {
   exportBtn: document.getElementById("export-btn"),
   body: document.body,
 };
+
+let statusTimer = null;
 
 init();
 
@@ -89,8 +85,6 @@ function bindEvents() {
   refs.resetConfig.addEventListener("click", resetConfig);
   refs.importBtn.addEventListener("click", importConfig);
   refs.exportBtn.addEventListener("click", exportConfig);
-  refs.scanBtn.addEventListener("click", startScan);
-  refs.stopScan.addEventListener("click", stopScan);
   refs.closeClue.addEventListener("click", closeCluePopup);
   refs.clueDialog.addEventListener("click", (event) => {
     const bounds = refs.clueDialog.getBoundingClientRect();
@@ -410,6 +404,15 @@ function persistFound() {
 
 function setStatus(text) {
   refs.status.textContent = text;
+  refs.status.classList.add("visible");
+
+  if (statusTimer) {
+    window.clearTimeout(statusTimer);
+  }
+
+  statusTimer = window.setTimeout(() => {
+    refs.status.classList.remove("visible");
+  }, 4200);
 }
 
 function escapeHtml(value) {
@@ -418,57 +421,4 @@ function escapeHtml(value) {
     .replaceAll('"', "&quot;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;");
-}
-
-async function startScan() {
-  if (!("BarcodeDetector" in window) || !navigator.mediaDevices?.getUserMedia) {
-    setStatus("Tu navegador no soporta escaneo QR directo. Podés ingresar el código manualmente.");
-    return;
-  }
-
-  try {
-    state.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
-    refs.scannerVideo.srcObject = state.stream;
-    refs.scannerDialog.showModal();
-
-    const detector = new BarcodeDetector({ formats: ["qr_code"] });
-    state.scanInterval = setInterval(async () => {
-      if (!refs.scannerVideo.videoWidth) return;
-      try {
-        const results = await detector.detect(refs.scannerVideo);
-        if (!results.length) return;
-        const value = results[0].rawValue?.trim();
-        if (!value) return;
-
-        const code = Number.parseInt(value, 10);
-        if (Number.isInteger(code) && code >= 1 && code <= 16) {
-          stopScan();
-          onFind(String(code));
-        }
-      } catch {
-        // seguimos intentando
-      }
-    }, 400);
-  } catch {
-    setStatus("No pude acceder a la cámara. Revisá permisos del navegador.");
-    stopScan();
-  }
-}
-
-function stopScan() {
-  if (state.scanInterval) {
-    clearInterval(state.scanInterval);
-    state.scanInterval = null;
-  }
-
-  if (state.stream) {
-    state.stream.getTracks().forEach((track) => track.stop());
-    state.stream = null;
-  }
-
-  refs.scannerVideo.srcObject = null;
-
-  if (refs.scannerDialog.open) {
-    refs.scannerDialog.close();
-  }
 }
