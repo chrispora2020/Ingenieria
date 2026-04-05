@@ -256,7 +256,7 @@ function renderAdmin() {
 
 function saveConfigFromForm() {
   const inputs = refs.adminList.querySelectorAll("input[data-code][data-field]");
-  const nextConfig = structuredClone(state.config);
+  const nextConfig = deepClone(state.config);
 
   inputs.forEach((input) => {
     const code = Number.parseInt(input.dataset.code, 10);
@@ -274,7 +274,7 @@ function saveConfigFromForm() {
 
 function resetConfig() {
   if (!confirm("¿Seguro querés restaurar la configuración por defecto?")) return;
-  state.config = structuredClone(DEFAULT_EGGS);
+  state.config = deepClone(DEFAULT_EGGS);
   persistConfig();
   renderAdmin();
   renderAll();
@@ -331,15 +331,23 @@ function renderAll() {
 function loadConfig() {
   try {
     const fromStorage = localStorage.getItem(STORAGE_KEYS.config);
-    if (!fromStorage) return structuredClone(DEFAULT_EGGS);
+    if (!fromStorage) return deepClone(DEFAULT_EGGS);
     const parsed = JSON.parse(fromStorage);
-    if (!Array.isArray(parsed) || parsed.length !== 16) return structuredClone(DEFAULT_EGGS);
+    if (!Array.isArray(parsed) || parsed.length !== 16) return deepClone(DEFAULT_EGGS);
     return parsed;
   } catch {
-    return structuredClone(DEFAULT_EGGS);
+    return deepClone(DEFAULT_EGGS);
   }
 }
 
+
+function deepClone(value) {
+  if (typeof structuredClone === "function") {
+    return structuredClone(value);
+  }
+
+  return JSON.parse(JSON.stringify(value));
+}
 function loadFound() {
   try {
     const fromStorage = localStorage.getItem(STORAGE_KEYS.found);
