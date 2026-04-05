@@ -95,7 +95,7 @@ function bindEvents() {
 
 function onFind(codeFromScan) {
   const raw = codeFromScan || refs.codeInput.value.trim();
-  const code = Number.parseInt(raw, 10);
+  const code = extractCode(raw);
 
   if (!Number.isInteger(code) || code < 1 || code > 16) {
     setStatus("Ese código no sirve 😅. Probá con un número entre 1 y 16.");
@@ -126,6 +126,16 @@ function onFind(codeFromScan) {
     setStatus(`🔁 Ya habías descubierto el huevo #${code}. Igual, ¡bien ahí!`);
   }
   refs.codeInput.value = "";
+}
+
+function extractCode(rawValue) {
+  const normalized = String(rawValue || "").normalize("NFKC").trim();
+  if (!normalized) return Number.NaN;
+
+  const digits = normalized.match(/\d+/u);
+  if (!digits) return Number.NaN;
+
+  return Number.parseInt(digits[0], 10);
 }
 
 function launchEggParty(code) {
