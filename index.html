@@ -11,8 +11,8 @@
     <header class="hero">
       <h1>🐣 Búsqueda de Huevos de Pascua</h1>
       <p>
-        ¡Aventura interactiva de 16 huevos! Ingresá (o escaneá) el código del huevo para descubrir
-        mensaje, pista y premio.
+        ¡Aventura interactiva de 16 huevos! Ingresá el código del huevo para descubrir mensaje,
+        pista y premio.
       </p>
       <div class="progress-wrap">
         <label for="progress">Progreso del álbum</label>
@@ -27,9 +27,7 @@
         <div class="finder">
           <input id="code-input" inputmode="numeric" pattern="[0-9]*" min="1" max="16" placeholder="Ejemplo: 3" />
           <button id="find-btn">Descubrir</button>
-          <button id="scan-btn" class="secondary">Escanear QR</button>
         </div>
-        <small id="scan-note">Si tu celular soporta cámara + lector QR en navegador, podés usar "Escanear QR".</small>
         <p id="status" class="status"></p>
       </section>
 
@@ -82,15 +80,6 @@
     <footer>
       <button id="reset-progress" class="danger">Reiniciar búsqueda</button>
     </footer>
-
-    <dialog id="scanner-dialog">
-      <h3>Escanear QR</h3>
-      <video id="scanner-video" autoplay playsinline></video>
-      <p class="hint">Mostrá un QR que contenga un número del 1 al 16.</p>
-      <div class="admin-actions">
-        <button id="stop-scan">Cerrar</button>
-      </div>
-    </dialog>
 
     <dialog id="clue-dialog" class="clue-dialog">
       <h3>🧩 ¡Nueva pista desbloqueada!</h3>
