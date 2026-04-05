@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ff70a6" />
+    <title>Búsqueda de Huevos de Pascua</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <h1>🐣 Búsqueda de Huevos de Pascua</h1>
+      <p>
+        ¡Aventura interactiva de 16 huevos! Ingresá (o escaneá) el código del huevo para descubrir
+        mensaje, pista y premio.
+      </p>
+      <div class="progress-wrap">
+        <label for="progress">Progreso del álbum</label>
+        <progress id="progress" value="0" max="16"></progress>
+        <span id="progress-text">0 / 16 encontrados</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>🔎 Buscar huevo</h2>
+        <div class="finder">
+          <input id="code-input" inputmode="numeric" pattern="[0-9]*" min="1" max="16" placeholder="Ejemplo: 3" />
+          <button id="find-btn">Descubrir</button>
+          <button id="scan-btn" class="secondary">Escanear QR</button>
+        </div>
+        <small id="scan-note">Si tu celular soporta cámara + lector QR en navegador, podés usar "Escanear QR".</small>
+        <p id="status" class="status"></p>
+      </section>
+
+      <section class="card result-card" id="result-card" hidden>
+        <h2>✨ ¡Huevo descubierto!</h2>
+        <p><strong>Número:</strong> <span id="result-code"></span></p>
+        <p><strong>Mensaje de Pascua:</strong> <span id="result-message"></span></p>
+        <p><strong>Referencia bíblica:</strong> <span id="result-scripture"></span></p>
+        <p><strong>Pista siguiente:</strong> <span id="result-clue"></span></p>
+        <div class="art-box">
+          <h3>🎁 Premio artístico</h3>
+          <div id="result-art" class="art"></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>📘 Álbum de huevos</h2>
+        <div id="album" class="album"></div>
+      </section>
+
+      <section class="card">
+        <h2>🗺️ Mapa aproximado de pistas</h2>
+        <div id="map" class="map-grid"></div>
+      </section>
+
+      <section class="card organizer">
+        <h2>🛠️ Modo organizador (mamá/papá)</h2>
+        <p>Acá podés personalizar pistas, mensajes y premios para cada huevo.</p>
+        <details>
+          <summary>Editar configuración de los 16 huevos</summary>
+          <div id="admin-list" class="admin-list"></div>
+          <div class="admin-actions">
+            <button id="save-config">Guardar configuración</button>
+            <button id="reset-config" class="danger">Restaurar por defecto</button>
+          </div>
+          <label for="import-json">Importar JSON</label>
+          <textarea id="import-json" rows="8" placeholder='Pegá aquí un JSON con la configuración'></textarea>
+          <div class="admin-actions">
+            <button id="import-btn" class="secondary">Importar configuración</button>
+            <button id="export-btn" class="secondary">Exportar configuración</button>
+          </div>
+          <p class="hint">
+            Tip: en cada huevo podés usar una imagen por URL (por ejemplo una foto subida a Google Drive,
+            Imgur, etc.). Si no hay URL, se muestra emoji.
+          </p>
+        </details>
+      </section>
+    </main>
+
+    <footer>
+      <button id="reset-progress" class="danger">Reiniciar búsqueda</button>
+    </footer>
+
+    <dialog id="scanner-dialog">
+      <h3>Escanear QR</h3>
+      <video id="scanner-video" autoplay playsinline></video>
+      <p class="hint">Mostrá un QR que contenga un número del 1 al 16.</p>
+      <div class="admin-actions">
+        <button id="stop-scan">Cerrar</button>
+      </div>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
